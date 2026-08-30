@@ -3,12 +3,11 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
-import { Brain, LayoutDashboard, Gamepad2, UserCircle, Info, Home, BookOpen, Mail, PlayCircle, Zap, Star, Users, MessageCircle, Briefcase, Rocket, HelpCircle, Activity, Settings, Trophy, LogIn, UserPlus, LogOut, MapPin, Phone, Database } from "lucide-react";
+import { Brain, LayoutDashboard, Gamepad2, UserCircle, Info, Home, BookOpen, Mail, PlayCircle, Zap, Star, Users, MessageCircle, Briefcase, Rocket, HelpCircle, Activity, Settings, Trophy, LogIn, UserPlus, LogOut, MapPin, Phone } from "lucide-react";
 
 export function Navigation() {
   const pathname = usePathname();
   const { data: session } = useSession();
-  const adminPanelUrl = "/admin";
 
   const topNavItems = [
     { name: "Home", href: "/", icon: Home, dropdown: [
@@ -23,15 +22,12 @@ export function Navigation() {
       { name: "Mega Milestone", href: "/mega-milestone", icon: Trophy },
     ] },
     { name: "Achievements", href: "/achievements", icon: Trophy },
-    { name: "Admin Hub", href: "/admin", icon: Database },
     { name: "Account", href: session ? "/dashboard" : "/sign-in", icon: UserCircle, dropdown: session ? [
       { name: "Dashboard", description: "Track your progress", href: "/dashboard", icon: Activity },
       { name: "Settings", description: "Manage your preferences", href: "/profile", icon: Settings },
-      { name: "Admin Panel", description: "Manage MySQL game questions & schema", href: "/admin", icon: Database },
       { name: "Sign Out", description: "Log out of your account", href: "#", onClick: () => signOut({ callbackUrl: '/' }), icon: LogOut },
     ] : [
       { name: "Sign In", description: "Access your account", href: "/sign-in", icon: LogIn },
-      { name: "Admin Panel", description: "Manage MySQL game questions & schema", href: "/admin", icon: Database },
     ] },
     { name: "Contact Us", href: "/contact", icon: Mail, dropdown: [
       { name: "Careers", description: "Join our growing team", href: "/careers", icon: Rocket },
